@@ -56,7 +56,7 @@ opt.colorcolumn = "100"
 
 vim.g.smartclose_set_default_mapping = 0
 vim.g.UltiSnipsExpandTrigger='<C-j>'
-vim.g.UltiSnipsJumpForwardTrigger="<C-j>"
-vim.g.UltiSnipsJumpBackwardTrigger="<C-k>"
+vim.g.UltiSnipsJumpForwardTrigger="<tab>"
+vim.g.UltiSnipsJumpBackwardTrigger="<C-b>"
 
 -- vim.cmd([[ ]])

@@ -30,33 +30,54 @@ lspconfig.lua_ls.setup {
   capabilities = capabilities,
 }
 
+lspconfig.dartls.setup({
+  cmd = { "dart", "language-server", "--protocol=lsp" },
+  filetypes = { "dart" },
+  capabilities = capabilities,
+  init_options = {
+    closingLabels = true,
+    flutterOutline = true,
+    onlyAnalyzeProjectsWithOpenFiles = true,
+    outline = true,
+    suggestFromUnimportedLibraries = true,
+  },
+  -- root_dir = root_pattern("pubspec.yaml"),
+  settings = {
+    dart = {
+      completeFunctionCalls = true,
+      showTodos = true,
+    },
+  },
+  on_attach = on_attach,
+})
+
 lspconfig.pylsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = {"python"},
+  filetypes = { "python" },
   settings = {
     pylsp = {
       plugins = {
-          -- formatter options
-          black = { enabled = false },
-          autopep8 = { enabled = false },
-          yapf = { enabled = false },
-          -- linter options
-          pylint = { enabled = false, executable = "pylint" },
-          flake8 = { enabled = false, config = "~/.flake8" },
-          pyflakes = { enabled = true },
-          pycodestyle = { enabled = false },
-          -- type checker
-          pylsp_mypy = { enabled = true },
-          -- auto-completion options
-          jedi_completion = { fuzzy = true },
-          -- import sorting
-          pyls_isort = { enabled = true },
+        -- formatter options
+        black = { enabled = false },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        -- linter options
+        pylint = { enabled = false, executable = "pylint" },
+        flake8 = { enabled = false, config = "~/.flake8" },
+        pyflakes = { enabled = true },
+        pycodestyle = { enabled = false },
+        -- type checker
+        pylsp_mypy = { enabled = true },
+        -- auto-completion options
+        jedi_completion = { fuzzy = true },
+        -- import sorting
+        pyls_isort = { enabled = true },
       },
     },
   },
   flags = {
-      debounce_text_changes = 200,
+    debounce_text_changes = 200,
   },
 }
 
@@ -71,7 +92,7 @@ lspconfig.pylsp.setup {
 -- })
 
 lspconfig.volar.setup {
-  settings = { },
+  settings = {},
   init_options = {
     vue = {
       hybridMode = false,
@@ -90,33 +111,33 @@ lspconfig.volar.setup {
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local formatting = null_ls.builtins.formatting
 null_ls.setup({
-    sources = {
-      formatting.black,
-      formatting.isort,
-      -- null_ls.builtins.diagnostics.flake8,
-    },
+  sources = {
+    formatting.black,
+    formatting.isort,
+    -- null_ls.builtins.diagnostics.flake8,
+  },
 
-    -- you can reuse a shared lspconfig on_attach callback here
-    -- on_attach = function(client, bufnr)
-    --     if client.supports_method("textDocument/formatting") then
-    --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    --         vim.api.nvim_create_autocmd("BufWritePre", {
-    --             group = augroup,
-    --             buffer = bufnr,
-    --             callback = function()
-    --                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-    --                 -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
-    --                 -- vim.lsp.buf.formatting_sync()
-    --                 vim.lsp.buf.format({
-    --                   async = false,
-    --                   bufnr = bufnr,
-    --                   -- Make sure only null-ls is doing the formatting!
-    --                   filter = function(cl)
-    --                     return cl.name == "null-ls"
-    --                   end
-    --                 })
-    --             end,
-    --         })
-    --     end
-    -- end,
+  -- you can reuse a shared lspconfig on_attach callback here
+  -- on_attach = function(client, bufnr)
+  --     if client.supports_method("textDocument/formatting") then
+  --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  --         vim.api.nvim_create_autocmd("BufWritePre", {
+  --             group = augroup,
+  --             buffer = bufnr,
+  --             callback = function()
+  --                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+  --                 -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+  --                 -- vim.lsp.buf.formatting_sync()
+  --                 vim.lsp.buf.format({
+  --                   async = false,
+  --                   bufnr = bufnr,
+  --                   -- Make sure only null-ls is doing the formatting!
+  --                   filter = function(cl)
+  --                     return cl.name == "null-ls"
+  --                   end
+  --                 })
+  --             end,
+  --         })
+  --     end
+  -- end,
 })

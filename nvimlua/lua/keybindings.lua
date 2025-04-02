@@ -90,11 +90,21 @@ local misc = {
   { mode = "c", options = { silent = false },  { "<c-p>", [[<up>]] } },
 }
 
+local flutter = {
+  name = "Flutter",
+  prefix = "<leader>",
+  { "fa",      [[:FlutterRun<cr>]] },
+  { "fq",      [[:FlutterQuit<cr>]] },
+  { "fr",      [[:FlutterHotReload<cr>]] },
+  { "fR",      [[:FlutterHotRestart<cr>]] },
+}
+
 nest.applyKeymaps({
-    files,
-    floatings,
-    buffers,
-    search,
-    others,
-    misc,
+  files,
+  floatings,
+  buffers,
+  search,
+  others,
+  misc,
+  flutter,
 })

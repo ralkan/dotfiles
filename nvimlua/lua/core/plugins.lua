@@ -63,12 +63,10 @@ return require('packer').startup(function(use)
   use 'SirVer/ultisnips'
   use 'honza/vim-snippets'
   use 'voronkovich/ultisnips-vue'
-  use 'quangnguyen30192/cmp-nvim-ultisnips'
 
   -- completion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'L3MON4D3/LuaSnip'
 
   use 'mfussenegger/nvim-dap'
   use 'mfussenegger/nvim-dap-python'
@@ -127,6 +125,12 @@ return require('packer').startup(function(use)
     }
   }
 
+
+  -- Flutter
+  use 'dart-lang/dart-vim-plugin'
+  use 'thosakwe/vim-flutter'
+  use 'natebosch/vim-lsc'
+  use 'natebosch/vim-lsc-dart'
 
   -- use {
   --   'VonHeikemen/lsp-zero.nvim',
